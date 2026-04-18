@@ -1,6 +1,7 @@
 use tauri::Manager;
 
 pub mod db;
+pub mod migrations;
 pub mod tray;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -19,7 +20,7 @@ pub fn run() {
     ))
     .plugin(
       tauri_plugin_sql::Builder::default()
-        .add_migrations("sqlite:dlpui.db", vec![])
+        .add_migrations("sqlite:dlpui.db", migrations::get_migrations())
         .build(),
     )
     .setup(|app| {
