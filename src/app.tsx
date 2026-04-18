@@ -6,6 +6,8 @@ import {
   BetterScrollAreaProvider,
 } from './components/ui/better-scroll-area'
 import { Card, CardContent, CardHeader, CardTitle } from './components/ui/card'
+import { SessionNewPage } from './features/session/session-new-page'
+import { SessionPage } from './features/session/session-page'
 
 function HomePage() {
   return (
@@ -43,6 +45,14 @@ export const appRouter = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
+      },
+      {
+        path: 'session/new',
+        element: <SessionNewPage />,
+      },
+      {
+        path: 'session/:sessionId',
+        element: <SessionPage />,
       },
     ],
   },
