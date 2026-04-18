@@ -1,8 +1,5 @@
 import { Button } from '@/components/ui/button'
-import {
-  HomeIcon,
-  Settings02Icon,
-} from '@hugeicons/core-free-icons'
+import { HomeIcon, Settings02Icon } from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { Link, useLocation } from 'react-router'
 
@@ -24,7 +21,7 @@ export function AppSidebar() {
 
   return (
     <div className="flex h-full w-48 flex-col items-start gap-4 overflow-hidden border-r p-2">
-      <div className="flex flex-col gap-2 w-full">
+      <div className="flex w-full flex-col gap-2">
         {navItems.map((item) => (
           <Button
             key={item.title}
