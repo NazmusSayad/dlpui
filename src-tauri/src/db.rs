@@ -7,8 +7,12 @@ pub struct Database {
 }
 
 impl Database {
-  pub fn new(data_dir: PathBuf) -> Result<Self, String> {
-    Ok(Database { data_dir })
+  pub fn new(data_dir: PathBuf) -> Self {
+    Database { data_dir }
+  }
+
+  pub fn data_dir(&self) -> &PathBuf {
+    &self.data_dir
   }
 }
 
@@ -21,6 +25,5 @@ pub fn get_data_dir<R: Runtime>(app: &AppHandle<R>) -> Result<PathBuf, String> {
 
 pub fn init_database<R: Runtime>(app: &AppHandle<R>) -> Result<Database, String> {
   let data_dir = get_data_dir(app)?;
-  std::fs::create_dir_all(&data_dir).map_err(|e| format!("Failed to create data dir: {e}"))?;
-  Database::new(data_dir)
+  Ok(Database::new(data_dir))
 }
