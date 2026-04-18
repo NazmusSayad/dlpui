@@ -53,6 +53,7 @@ type BetterDialogContentProps = {
 
   title?: ReactNode
   description?: ReactNode
+  hideCloseButton?: boolean
 
   footerCancel?: ReactNode | true
   footerSubmit?: ReactNode | true
@@ -99,6 +100,7 @@ export function BetterDialogContent({
 
   title,
   description,
+  hideCloseButton,
 
   footerCancel,
   footerSubmit,
@@ -137,34 +139,38 @@ export function BetterDialogContent({
   const header = headerContent ? (
     headerContent
   ) : title || description ? (
-    <DialogHeader className="flex min-h-17 w-full flex-row items-center justify-between border-b px-4.5 pb-0.5">
+    <DialogHeader className="flex min-h-17 w-full flex-row items-center justify-between border-b px-4.5 py-2">
       <div className="flex flex-col items-start gap-0.5">
-        <DialogTitle className="text-base font-medium">{title}</DialogTitle>
-        <DialogDescription className="text-muted-foreground/75 text-sm text-[0.8125rem]">
+        <DialogTitle className="text-left text-base font-medium">
+          {title}
+        </DialogTitle>
+        <DialogDescription className="text-muted-foreground/75 text-left text-sm text-[0.8125rem]">
           {description}
         </DialogDescription>
       </div>
 
-      <DialogClose asChild>
-        <button className="bg-muted text-foreground hover:bg-destructive flex size-[1em] cursor-pointer items-center justify-center rounded-[0.25em] text-sm text-[2rem] transition-all hover:text-red-700">
-          <svg
-            width="0.4em"
-            height="0.4em"
-            fill="none"
-            viewBox="0 0 16 16"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M14.7434 1.1709L0.743408 15.1709M0.743408 1.1709L14.7434 15.1709"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="transition-all"
-            />
-          </svg>
-        </button>
-      </DialogClose>
+      {!hideCloseButton && (
+        <DialogClose asChild>
+          <button className="bg-muted text-foreground hover:bg-destructive flex size-[1em] shrink-0 cursor-pointer items-center justify-center rounded-[0.25em] text-sm text-[2rem] transition-all hover:text-red-700">
+            <svg
+              width="0.4em"
+              height="0.4em"
+              fill="none"
+              viewBox="0 0 16 16"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14.7434 1.1709L0.743408 15.1709M0.743408 1.1709L14.7434 15.1709"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="transition-all"
+              />
+            </svg>
+          </button>
+        </DialogClose>
+      )}
     </DialogHeader>
   ) : null
 

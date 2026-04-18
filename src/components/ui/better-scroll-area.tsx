@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils'
+import { PropsWithChildren } from 'react'
 import { ScrollArea } from './scroll-area'
 
 export function BetterScrollAreaProvider({
@@ -27,5 +28,33 @@ export function BetterScrollAreaContent({
         height: '100%',
       }}
     />
+  )
+}
+
+export function BetterScrollAreaFaded({
+  children,
+  fadeSpace = '2rem',
+}: PropsWithChildren<{ fadeSpace?: number | string }>) {
+  const resolvedFadeSpace =
+    typeof fadeSpace === 'number' ? `${fadeSpace}px` : fadeSpace
+
+  return (
+    <BetterScrollAreaProvider>
+      <BetterScrollAreaContent
+        style={{
+          maskImage: `linear-gradient(to bottom, transparent 0, black ${resolvedFadeSpace}, black calc(100% - ${resolvedFadeSpace}), transparent 100%)`,
+        }}
+      >
+        {children}
+      </BetterScrollAreaContent>
+    </BetterScrollAreaProvider>
+  )
+}
+
+export function BetterScrollArea({ children }: PropsWithChildren) {
+  return (
+    <BetterScrollAreaProvider>
+      <BetterScrollAreaContent>{children}</BetterScrollAreaContent>
+    </BetterScrollAreaProvider>
   )
 }
