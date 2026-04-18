@@ -18,7 +18,7 @@
         "minWidth": 720,
         "minHeight": 640,
         "decorations": true,
-        "visible": false,
+        "visible": true,
         "shadow": true,
         "theme": "Dark"
       }
