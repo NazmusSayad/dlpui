@@ -1,5 +1,6 @@
 import { createBrowserRouter, Outlet } from 'react-router'
 import { AppSidebar } from './components/app-sidebar'
+import { ErrorPage } from './components/error-page'
 import {
   BetterScrollAreaContent,
   BetterScrollAreaProvider,
@@ -24,8 +25,9 @@ function HomePage() {
 export const appRouter = createBrowserRouter([
   {
     path: '/',
+    errorElement: <ErrorPage />,
     element: (
-      <div className="grid size-full grid-cols-[auto_1fr] overflow-hidden">
+      <div className="grid size-full h-screen grid-cols-[auto_1fr] overflow-hidden">
         <AppSidebar />
 
         <BetterScrollAreaProvider>
