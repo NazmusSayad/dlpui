@@ -14,7 +14,7 @@ pub fn create_tray<R: Runtime>(app: &AppHandle<R>) -> tauri::Result<()> {
   let menu = Menu::with_items(app, &[&show_i, &hide_i, &quit_i])?;
 
   let mut builder = TrayIconBuilder::with_id("app")
-    .tooltip("App")
+    .tooltip("DLP UI")
     .menu(&menu)
     .show_menu_on_left_click(false);
 
