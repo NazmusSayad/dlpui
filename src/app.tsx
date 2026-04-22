@@ -1,32 +1,27 @@
-import { createBrowserRouter, Navigate, Outlet } from 'react-router'
-import { AppSidebar } from './components/app-sidebar'
+import { createBrowserRouter } from 'react-router'
 import { ErrorPage } from './components/error-page'
-import { SessionNewPage } from './features/session/session-new-page'
-import { SessionPage } from './features/session/session-page'
+import { BetterScrollArea } from './components/ui/better-scroll-area'
+import { AddNewDownloadButton } from './features/downloads/add-new-download-button'
+import { DownloadsTable } from './features/downloads/downloads-table'
 
 export const appRouter = createBrowserRouter([
   {
     path: '/',
     errorElement: <ErrorPage />,
-    element: (
-      <div className="grid size-full h-screen grid-cols-[auto_1fr] overflow-hidden">
-        <AppSidebar />
-
-        <Outlet />
-      </div>
-    ),
     children: [
       {
         index: true,
-        element: <Navigate to="/session/new" replace />,
-      },
-      {
-        path: 'session/new',
-        element: <SessionNewPage />,
-      },
-      {
-        path: 'session/:sessionId',
-        element: <SessionPage />,
+        element: (
+          <>
+            <div className="grid h-screen">
+              <BetterScrollArea>
+                <DownloadsTable />
+              </BetterScrollArea>
+            </div>
+
+            <AddNewDownloadButton />
+          </>
+        ),
       },
     ],
   },
