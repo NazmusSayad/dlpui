@@ -5,6 +5,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { cn } from '@/lib/utils'
 import {
   useDownloadSessionStore,
   type DownloadSession,
@@ -44,8 +45,11 @@ const columns = [
           className="size-4 cursor-pointer disabled:cursor-default disabled:opacity-30"
         >
           <HugeiconsIcon
-            icon={row.getIsExpanded() ? ArrowDown01Icon : ArrowRight01Icon}
-            className="size-4"
+            icon={ArrowRight01Icon}
+            className={cn(
+              'size-4 transition-all',
+              row.getIsExpanded() && 'rotate-90'
+            )}
           />
         </button>
       )

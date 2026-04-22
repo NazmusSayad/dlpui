@@ -45,7 +45,7 @@ export function DownloadSessionRow({ row }: { row: Row<DownloadSession> }) {
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead className="pl-6">Name</TableHead>
+                        <TableHead className="pl-12">Name</TableHead>
                         <TableHead>Link</TableHead>
                         <TableHead>Progress</TableHead>
                         <TableHead>Format</TableHead>
@@ -54,7 +54,9 @@ export function DownloadSessionRow({ row }: { row: Row<DownloadSession> }) {
                     <TableBody>
                       {row.original.contents.map((content) => (
                         <TableRow key={content.id}>
-                          <TableCell className="pl-6">{content.name}</TableCell>
+                          <TableCell className="pl-12">
+                            {content.name}
+                          </TableCell>
                           <TableCell className="max-w-[200px] truncate">
                             {content.link}
                           </TableCell>
