@@ -5,11 +5,13 @@ type DownloadSessionContent = {
   name: string
   link: string
   progress: number
+  format?: string
 }
 
 type DownloadSession = {
   id: string
   name: string
+  status?: 'pending' | 'downloading' | 'completed' | 'failed'
   contents: DownloadSessionContent[]
 }
 
