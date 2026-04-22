@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button'
 import {
   Table,
   TableBody,
@@ -35,30 +36,6 @@ import { DownloadSessionRow } from './download-session-row'
 const columnHelper = createColumnHelper<DownloadSession>()
 
 const columns = [
-  columnHelper.display({
-    id: 'expander',
-    cell: ({ row }: { row: Row<DownloadSession> }) => {
-      return (
-        <button
-          disabled={!row.getCanExpand()}
-          onClick={row.getToggleExpandedHandler()}
-          className="size-4 cursor-pointer disabled:cursor-default disabled:opacity-30"
-        >
-          <HugeiconsIcon
-            icon={ArrowRight01Icon}
-            className={cn(
-              'size-4 transition-all',
-              row.getIsExpanded() && 'rotate-90'
-            )}
-          />
-        </button>
-      )
-    },
-
-    size: 20,
-    minSize: 20,
-    maxSize: 20,
-  }),
   columnHelper.accessor('name', {
     header: 'Name',
     cell: (info) => info.getValue(),
@@ -93,6 +70,30 @@ const columns = [
       cell: (info) => `${info.getValue()}%`,
     }
   ),
+  columnHelper.display({
+    id: 'expander',
+    cell: ({ row }: { row: Row<DownloadSession> }) => {
+      return (
+        <Button
+          disabled={!row.getCanExpand()}
+          onClick={row.getToggleExpandedHandler()}
+          className="size-10 rounded-full bg-transparent!"
+        >
+          <HugeiconsIcon
+            icon={ArrowRight01Icon}
+            className={cn(
+              'size-4 transition-all',
+              row.getIsExpanded() && 'rotate-90'
+            )}
+          />
+        </Button>
+      )
+    },
+
+    size: 30,
+    minSize: 30,
+    maxSize: 30,
+  }),
 ]
 
 function SortIcon({ column }: { column: Column<DownloadSession, unknown> }) {
@@ -123,9 +124,14 @@ export function DownloadsTable() {
     <Table className="w-full">
       <TableHeader>
         {table.getHeaderGroups().map((headerGroup) => (
-          <TableRow key={headerGroup.id}>
+          <TableRow key={headerGroup.id} className="h-[48px]">
             {headerGroup.headers.map((header) => (
-              <TableHead key={header.id}>
+              <TableHead
+                key={header.id}
+                className={cn(
+                  header.column.id === 'expander' && 'w-[30px] p-0'
+                )}
+              >
                 <div
                   className={`flex items-center gap-2 select-none ${header.column.getCanSort() ? 'cursor-pointer' : ''}`}
                   onClick={header.column.getToggleSortingHandler()}

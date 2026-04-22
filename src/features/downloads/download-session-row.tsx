@@ -17,11 +17,15 @@ export function DownloadSessionRow({ row }: { row: Row<DownloadSession> }) {
     <React.Fragment>
       <TableRow
         className={cn(
+          'h-[48px]',
           row.getIsExpanded() && 'bg-secondary/60 hover:bg-secondary/60'
         )}
       >
         {row.getVisibleCells().map((cell) => (
-          <TableCell key={cell.id}>
+          <TableCell
+            key={cell.id}
+            className={cn(cell.column.id === 'expander' && 'w-[30px] p-0')}
+          >
             {flexRender(cell.column.columnDef.cell, cell.getContext())}
           </TableCell>
         ))}
@@ -44,8 +48,8 @@ export function DownloadSessionRow({ row }: { row: Row<DownloadSession> }) {
                 <div className="bg-secondary/60">
                   <Table>
                     <TableHeader>
-                      <TableRow>
-                        <TableHead className="pl-12">Name</TableHead>
+                      <TableRow className="h-[40px]">
+                        <TableHead className="pl-8">Name</TableHead>
                         <TableHead>Link</TableHead>
                         <TableHead>Progress</TableHead>
                         <TableHead>Format</TableHead>
@@ -53,10 +57,8 @@ export function DownloadSessionRow({ row }: { row: Row<DownloadSession> }) {
                     </TableHeader>
                     <TableBody>
                       {row.original.contents.map((content) => (
-                        <TableRow key={content.id}>
-                          <TableCell className="pl-12">
-                            {content.name}
-                          </TableCell>
+                        <TableRow key={content.id} className="h-[40px]">
+                          <TableCell className="pl-8">{content.name}</TableCell>
                           <TableCell className="max-w-[200px] truncate">
                             {content.link}
                           </TableCell>
